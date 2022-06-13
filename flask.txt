@@ -1,0 +1,48 @@
+-----Syntax: return HelloWorld-----
+
+from flask import Flask,
+
+app=Flask(__name__)
+
+@app.route("/")
+def index():
+    return "Hello Dipak"
+    
+if __name__ =="__main__":
+    app.run(debug=True)
+
+
+
+-----Database connect-----
+cmd: pip install flask-sqlalchemy
+
+from flask_sqlalchemy import SQLAlchemy
+
+
+app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
+db = SQLAlchemy(app)
+db.create_all()
+
+
+create model
+
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True
+    fname = db.Column(db.String(120), nullable=False)
+    lname = db.Column(db.String(120), nullable=False)
+    password = db.Column(db.String(120), nullable=False)
+
+cmd: 
+from filename import db
+from filename import User
+
+x=User(fname="Dipak",lname="Bhagat",password="1234")
+db.session.add(x)
+db.session.commit()
+
+fetch data
+
+data=User.query.all()
+data / print(data) 
+
